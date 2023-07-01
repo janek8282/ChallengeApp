@@ -1,41 +1,22 @@
-﻿var name = "Ewa";
-var genderWoman = true;
-var age = 31;
+﻿int number = 1631154407;
+string numberInString = number.ToString();
 
-if (genderWoman == true)
+
+Console.WriteLine("Wyniki dla liczby: " + numberInString);
+
+for (int i = 0; i < 10; i++)
 {
-    if (age < 30)
+    int countDigit = 0;
+
+    foreach (var str in numberInString)
     {
-        Console.WriteLine("Kobieta poniżej 30 lat");
+        if (str == (char)(i + '0'))
+        {
+          countDigit++;
+        }
     }
-    else if (age == 33 && name == "Ewa")
-    {
-        Console.WriteLine("Ewa, lat 33");
-    }
-    else
-    {
-        Console.WriteLine("Kobieta w wieku 30+ lat");
-    }
+    Console.WriteLine(i + " => " + countDigit);
 }
-else
-{
-    if (age < 18)
-    {
-        Console.WriteLine("Niepełnoletni Męszczyzna");
-    }
-    else
-    {
-        Console.WriteLine("Pełnoletni Męszczyzna");
-    }
-}
-
-
-
-
-
-
-
-
 
 
 
