@@ -1,22 +1,49 @@
-﻿int number = 1631154407;
-string numberInString = number.ToString();
+﻿
+User user1 = new User("Ala", "11");
+User user2 = new User("Ela", "22");
+User user3 = new User("Ola", "33");
+User user4 = new User("Wiola", "44");
 
 
-Console.WriteLine("Wyniki dla liczby: " + numberInString);
+var loginName1 = user1.Login;
 
-for (int i = 0; i < 10; i++)
+user1.AddScore(5);
+user1.AddScore(7);
+
+var result = user1.Result;
+Console.WriteLine(loginName1 + " \nSuma punktów to: " + result);
+
+
+class User
 {
-    int countDigit = 0;
+    //przechowuje Liste z punktami, lista nie dostępna na zewnątrz ale wynik widoczny
+    private List<int> score = new List<int>();
 
-    foreach (var str in numberInString)
+    public User(string login, string password)
     {
-        if (str == (char)(i + '0'))
+        this.Login = login;
+        this.Password = password;
+    }
+    //modyfikatory dostępu
+    public string Login { get; private set; }
+    public string Password { get; private set; }
+   
+    public int Result
+    {
+        get
         {
-          countDigit++;
+            return this.score.Sum();
+            
         }
     }
-    Console.WriteLine(i + " => " + countDigit);
+
+    //metoda z void --> nic nie zwraca
+    public void AddScore(int number)
+    {
+        this.score.Add(number);
+    }
 }
+
 
 
 
