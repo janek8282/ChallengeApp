@@ -3,17 +3,18 @@ namespace ChallengeApp.Tests
     public class Tests
     {
         [Test]
-        public void checkSumOfTwoNumbers()
+        public void employeeSumOfScores()
         {
             //arrange
-            int arg1 = 8;
-            int arg2 = 2;
-
+            var employee = new Employee("Ala", "Kloc", 28);
+            employee.AddScore(4);
+            employee.AddScore(7);
+           
             //act
-            int result = arg1 + arg2;
+            int employeeScores = employee.SumOfScores;
 
             //assert
-            Assert.AreEqual(10, result);
+            Assert.AreEqual(11, employeeScores);
         }
     }
 }
