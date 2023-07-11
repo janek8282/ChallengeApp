@@ -43,7 +43,7 @@ namespace ChallengeApp.Tests
             int employeeSumOfScore = employee.SumOfScores;
 
             //assert
-            Assert.AreEqual(-3, employeeSumOfScore);
+            Assert.That(-3, Is.EqualTo(employeeSumOfScore));
         }
 
     }
