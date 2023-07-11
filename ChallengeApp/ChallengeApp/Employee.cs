@@ -25,7 +25,10 @@
         public void AddScore(int score)
         {
             this.scores.Add(score);
-            //this.scores.Add(-1);
+        }
+        public void SubtractScore(int score)
+        {
+            this.scores.Add(score * (-1));
         }
     }
 }
