@@ -3,12 +3,19 @@
     public class Employee
     {
         private List<int> scores = new List<int>();
+        public object? surname;
 
         public Employee(string name, string surName, int age)
         {
             this.Name = name;
             this.SurName = surName;
             this.Age = age;
+        }
+
+        public Employee(string name, string surName)
+        {
+            this.Name = name;
+            this.SurName = surName;
         }
 
         public string Name { get; private set; }

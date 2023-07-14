@@ -1,6 +1,6 @@
 namespace ChallengeApp.Tests
 {
-    public class Tests
+    public class employeeTests
     {
         [Test]
         public void employeeSumOfScores_OnlyPositives()

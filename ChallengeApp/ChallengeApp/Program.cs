@@ -6,7 +6,7 @@ var employee3 = new Employee("Ola", "Miła", 41);
 
 employee1.AddScore(4);      employee2.AddScore(9);      employee3.AddScore(5);
 employee1.AddScore(7);      employee2.AddScore(6);      employee3.AddScore(5);
-employee1.SubtractScore(7); employee2.SubtractScore(5);
+employee1.SubtractScore(7); employee2.SubtractScore(9);
 
 
 List<Employee> listOfEmployees = new List<Employee>()
