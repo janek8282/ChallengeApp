@@ -2,41 +2,42 @@
 {
     public class Employee
     {
-        private List<int> scores = new List<int>();
-        public object? surname;
-
-        public Employee(string name, string surName, int age)
-        {
-            this.Name = name;
-            this.SurName = surName;
-            this.Age = age;
-        }
-
+        public List<float> grades = new List<float>();
+        //----------------------------------------------------
         public Employee(string name, string surName)
         {
             this.Name = name;
             this.SurName = surName;
         }
-
+        //----------------------------------------------------
         public string Name { get; private set; }
         public string SurName { get; private set; }
-        public int Age { get; private set; }
+        //----------------------------------------------------
+        public void AddGrade(float grade)
+        {
+                this.grades.Add(grade);
+        }
+        //metoda GetStatistics w klasie Employee utworzona na podstawie klasy StatisticsEmployee
+        public Statistics GetStatistics()
+        {
+            var statistics= new Statistics();
 
-        public int SumOfScores
-        {
-            get
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            statistics.Avg = 0;
+
+            foreach (var grade in this.grades)
             {
-                return this.scores.Sum();
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Avg += grade;
             }
-        }
-        public void AddScore(int score)
-        {
-            this.scores.Add(score);
-        }
-        public void SubtractScore(int score)
-        {
-            this.scores.Add(score * (-1));
+            statistics.Avg /= this.grades.Count;
+
+            return statistics;
         }
     }
 }
 
+
+ 
