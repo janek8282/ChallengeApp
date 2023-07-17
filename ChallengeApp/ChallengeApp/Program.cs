@@ -1,32 +1,58 @@
 ﻿using ChallengeApp;
 
-var employee1 = new Employee("Ala", "Kloc", 28);
-var employee2 = new Employee("Ela", "Pałac", 35);
-var employee3 = new Employee("Ola", "Miła", 41);
+var employee1 = new Employee("Ola", "Kloc");
 
-employee1.AddScore(4);      employee2.AddScore(9);      employee3.AddScore(5);
-employee1.AddScore(7);      employee2.AddScore(6);      employee3.AddScore(5);
-employee1.SubtractScore(7); employee2.SubtractScore(9);
+employee1.AddGrade(3);
+employee1.AddGrade(2);
+employee1.AddGrade(6);
 
 
-List<Employee> listOfEmployees = new List<Employee>()
+
+var statistics = employee1.GetStatistics();
+
+Console.WriteLine($"Wartość min : {statistics.Min}");
+Console.WriteLine($"Wartość max : {statistics.Max}");
+Console.WriteLine($"Wartość avg : {statistics.Avg:N2}");
+
+
+/*//-------------- 1 --------------------------------------------------------------------------
+//przekazując do metody obiekt Statistics przekazujemy go na zasadzie wartości referencji 
+//i nie jesteśmy w stanie nadpisać oryginalnego obiektu 
+//nawet przypisując do statistics nowy obiekt Statistics
+
+SetSth(statistics)
+
+ void SetSth(Statistics statistics)
 {
-employee1, employee2, employee3
-};
+    statistics = new Statistics();
+}*/
 
-int maxValueOfScores = 0;
-Employee employee = null;
 
-foreach (var singleEmployee in listOfEmployees)
+/*//-------------- 2 ref ----------------------------------------------------------------------
+//przekazując do metody obiekt Statistics przekazujemy go na zasadzie wartości referencji 
+//i nie jesteśmy w stanie nadpisać oryginalnego obiektu chyba że podamy "ref"
+//przed przekazywanymi parametrami do metodi i przy jej wywołaniu
+
+
+SetSth(ref statistics);
+
+void SetSth(ref Statistics statistics)
 {
-    if(singleEmployee.SumOfScores > maxValueOfScores)
-    {
-        maxValueOfScores = singleEmployee.SumOfScores;
-        employee = singleEmployee;
-    }
-}
+    statistics = new Statistics();
+}*/
 
-Console.WriteLine("Njawiększą sumę punktów --> "
-    + maxValueOfScores + " uzyskał pracownik:\n" 
-    + employee.Name + " " + employee.SurName + "\n" 
-    + employee.Age + " lat");
+
+/*//-------------- 3 out ----------------------------------------------------------------------
+//przekazując do metody obiekt Statistics przekazujemy go na zasadzie wartości referencji 
+//i nie jesteśmy w stanie nadpisać oryginalnego obiektu chyba że podamy "out"
+//przed przekazywanymi parametrami do metodi i przy jej wywołaniu
+//różnica między ref i out jest taka że przy ref możemy ale nie musimy nadpisywać obiektu w pamięci programu a przy out koniecznie - inaczej błąd
+//dzieje się tak że przekazany parametr do funkcji nie ma przypisanej wartości a przy ref ma
+
+
+SetSth(out statistics);
+
+void SetSth(out Statistics statistics)
+{
+    statistics = new Statistics();
+}*/
