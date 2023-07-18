@@ -3,11 +3,12 @@
     public class Employee
     {
         public List<float> grades = new List<float>();
+        
         //----------------------------------------------------
-        public Employee(string name, string surName)
+        public Employee(string name, string surname)
         {
             this.Name = name;
-            this.SurName = surName;
+            this.SurName = surname;
         }
         //----------------------------------------------------
         public string Name { get; private set; }
@@ -17,7 +18,7 @@
         {
                 this.grades.Add(grade);
         }
-        //metoda GetStatistics w klasie Employee utworzona na podstawie klasy StatisticsEmployee
+        //metoda GetStatistics w klasie Employee utworzona na podstawie modelu danych czyli klasy Statistics
         public Statistics GetStatistics()
         {
             var statistics= new Statistics();
