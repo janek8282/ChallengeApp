@@ -10,9 +10,11 @@
             this.Name = name;
             this.SurName = surname;
         }
+
         //----------------------------------------------------
         public string Name { get; private set; }
         public string SurName { get; private set; }
+
         //--walidacja danyh przy wprowadzaniu wartości float--
         public void AddGrade(float grade)
         {
@@ -28,9 +30,31 @@
         //--zamiana stringa na float ale bez walidacji-------
         public void AddGrade(string grade)
         {
-           var gradeToFloat = float.Parse(grade);
-            this.grades.Add(gradeToFloat);
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);//wywołuje metodę AddGrade(float grade)
+            }
+            else
+            {
+                Console.WriteLine("String is not a float");
+            }
         }
+        public void AddGrade(long grade)
+        {  
+            float result = (float)grade;
+            this.AddGrade(result);//wywołuje metodę AddGrade(float grade)
+        }
+        public void AddGrade(double grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);//wywołuje metodę AddGrade(float grade)
+        }
+        public void AddGrade(decimal grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);//wywołuje metodę AddGrade(float grade)
+        }
+
         //metoda GetStatistics w klasie Employee utworzona na podstawie modelu danych czyli klasy Statistics
         public Statistics GetStatistics()
         {
