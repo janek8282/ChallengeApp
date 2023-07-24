@@ -1,4 +1,6 @@
-﻿namespace ChallengeApp
+﻿using System.Diagnostics;
+
+namespace ChallengeApp
 {
     public class Employee
     {
@@ -40,7 +42,7 @@
             }
         }
         public void AddGrade(long grade)
-        {  
+        {
             float result = (float)grade;
             this.AddGrade(result);//wywołuje metodę AddGrade(float grade)
         }
@@ -64,12 +66,55 @@
             statistics.Min = float.MaxValue;
             statistics.Avg = 0;
 
+            //pętle: forEach, do while, whiile
+            //przerwania: break, continue, goto(NIE stosować !!!)
+            /*//pętla forEach
             foreach (var grade in this.grades)
             {
                 statistics.Max = Math.Max(statistics.Max, grade);
                 statistics.Min = Math.Min(statistics.Min, grade);
                 statistics.Avg += grade;
+            }*/
+
+            //pętla for
+            for (var i = 0; i < this.grades.Count; i++)
+            {
+                statistics.Max = Math.Max(statistics.Max, this.grades[i]);
+                statistics.Min = Math.Min(statistics.Min, this.grades[i]);
+                statistics.Avg += this.grades[i];
             }
+
+
+
+            /*//pętla do while
+            var i = 0;
+            do
+            {
+                statistics.Max = Math.Max(statistics.Max, this.grades[i]);
+                statistics.Min = Math.Min(statistics.Min, this.grades[i]);
+                statistics.Avg += this.grades[i];
+                i++;
+            }
+            while (i < this.grades.Count);*/
+
+            /*//pętla while
+            var i = 0;
+            while (i < this.grades.Count)
+            {
+                if (this.grades[i] == 88)
+                {
+                    break;//przerywamy pętlę
+                    continue;//przetyamy tylko jedeo przejście pętli
+            goto mojaFlaga1;//przeskakuje do flagi "mojaFlaga1" - staramy się nie stosować
+                }
+                statistics.Max = Math.Max(statistics.Max, this.grades[i]);
+                statistics.Min = Math.Min(statistics.Min, this.grades[i]);
+                statistics.Avg += this.grades[i];
+                i++;
+            mojaFlaga1: //flaga dla goto "mojaFlaga1"
+            }*/
+
+
             statistics.Avg /= this.grades.Count;
 
             return statistics;

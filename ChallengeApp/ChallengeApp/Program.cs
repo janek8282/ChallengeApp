@@ -4,7 +4,7 @@ var employee1 = new Employee("Ola", "Kloc");
 
 employee1.AddGrade("99");
 employee1.AddGrade("AA");
-employee1.AddGrade(44);
+employee1.AddGrade(88);
 employee1.AddGrade(1235.5555m);
 
 
