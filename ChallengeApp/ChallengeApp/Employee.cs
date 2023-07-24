@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using ChallengeApp;
+using System.Diagnostics;
 
 namespace ChallengeApp
 {
@@ -57,8 +58,9 @@ namespace ChallengeApp
             this.AddGrade(result);//wywołuje metodę AddGrade(float grade)
         }
 
-        //metoda GetStatistics w klasie Employee utworzona na podstawie modelu danych czyli klasy Statistics
-        public Statistics GetStatistics()
+
+        //------------------------1-ForEach--------------------------------
+        public Statistics GetStatisticsWithForEach()
         {
             var statistics = new Statistics();
 
@@ -66,27 +68,44 @@ namespace ChallengeApp
             statistics.Min = float.MaxValue;
             statistics.Avg = 0;
 
-            //pętle: forEach, do while, whiile
-            //przerwania: break, continue, goto(NIE stosować !!!)
-            /*//pętla forEach
             foreach (var grade in this.grades)
             {
                 statistics.Max = Math.Max(statistics.Max, grade);
                 statistics.Min = Math.Min(statistics.Min, grade);
                 statistics.Avg += grade;
-            }*/
+            }
+            statistics.Avg /= this.grades.Count;
 
-            //pętla for
+            return statistics;
+        }
+        //------------------------2-For------------------------------------
+        public Statistics GetStatisticsWithFor()
+        {
+            var statistics = new Statistics();
+
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            statistics.Avg = 0;
+
             for (var i = 0; i < this.grades.Count; i++)
             {
                 statistics.Max = Math.Max(statistics.Max, this.grades[i]);
                 statistics.Min = Math.Min(statistics.Min, this.grades[i]);
                 statistics.Avg += this.grades[i];
             }
+            statistics.Avg /= this.grades.Count;
 
+            return statistics;
+        }
+        //------------------------3-DoWhile--------------------------------
+        public Statistics GetStatisticsWithDoWhile()
+        {
+            var statistics = new Statistics();
 
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            statistics.Avg = 0;
 
-            /*//pętla do while
             var i = 0;
             do
             {
@@ -95,31 +114,32 @@ namespace ChallengeApp
                 statistics.Avg += this.grades[i];
                 i++;
             }
-            while (i < this.grades.Count);*/
+            while (i < this.grades.Count);
 
-            /*//pętla while
+            statistics.Avg /= this.grades.Count;
+
+            return statistics;
+        }
+        //------------------------4-While----------------------------------
+        public Statistics GetStatisticsWithWhile()
+        {
+            var statistics = new Statistics();
+
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            statistics.Avg = 0;
+
             var i = 0;
             while (i < this.grades.Count)
             {
-                if (this.grades[i] == 88)
-                {
-                    break;//przerywamy pętlę
-                    continue;//przetyamy tylko jedeo przejście pętli
-            goto mojaFlaga1;//przeskakuje do flagi "mojaFlaga1" - staramy się nie stosować
-                }
                 statistics.Max = Math.Max(statistics.Max, this.grades[i]);
                 statistics.Min = Math.Min(statistics.Min, this.grades[i]);
                 statistics.Avg += this.grades[i];
                 i++;
-            mojaFlaga1: //flaga dla goto "mojaFlaga1"
-            }*/
-
-
+            }
             statistics.Avg /= this.grades.Count;
 
             return statistics;
         }
     }
 }
-
-
