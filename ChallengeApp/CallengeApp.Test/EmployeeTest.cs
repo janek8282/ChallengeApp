@@ -1,23 +1,22 @@
-namespace ChallengeApp.Tests
+ï»¿namespace ChallengeApp.Tests
 {
     public class EmployeeTest
     {
-//wprowadzam dane do testów
+ //wprowadzam dane do testÃ³w
         string employeeName = "Ela";
         string employeeSurNamee = "Kowalska";
-        int gradeMin = -3;
-        int grade1 = -1;
-        int grade2 = 5;
-        int grade3 = 10;
-        int gradeMax = 11;
-
- //metoda zwracaj¹ca obiekt klasy Employee       
+        int gradeMin = 3;
+        int grade1 = 11;
+        char grade2 = 'c';
+        char grade3 = 'B';
+        int gradeMax = 89;
+        char rating;
+ //metoda zwracajÄ…ca obiekt klasy Employee       
         private Employee GetEmployeeNameSurname(string name, string surname)
         {
             return new Employee(name, surname);
         }
-
-//sprawdzam imiê i nazwisko pracownika
+ //---1---sprawdzam imiÄ™ i nazwisko pracownika
         [Test]
         public void TestClassEmployee()
         {
@@ -28,7 +27,7 @@ namespace ChallengeApp.Tests
             Assert.AreEqual(employeeName, employee1.Name);
             Assert.AreEqual(employeeSurNamee, employee1.SurName);
         }
-//sprawdzam statystyki
+ //---2---sprawdzam statystyki
         [Test]
         public void TestClassStatistics()
         {
@@ -43,11 +42,29 @@ namespace ChallengeApp.Tests
             //act
             var statistics = employee1.GetStatistics();
             var Avg = employee1.grades.Sum() / employee1.grades.Count();
-
+            switch (Avg)
+            {
+                case >= 80:
+                    rating = 'A';
+                    break;
+                case >= 60:
+                    rating = 'B';
+                    break;
+                case >= 40:
+                    rating = 'C';
+                    break;
+                case  >= 20:
+                    rating = 'D';
+                    break;
+                default:
+                    rating = 'N';
+                    break;
+            }
             //assert
             Assert.AreEqual(gradeMin, statistics.Min);
             Assert.AreEqual(gradeMax, statistics.Max);
             Assert.AreEqual(Avg, statistics.Avg);
+            Assert.AreEqual(rating, statistics.AvgLetter);
         }
     }
 }

@@ -8,5 +8,6 @@
 
         public float Avg { get; set; }
 
+        public char AvgLetter { get; set; }
     }
 }

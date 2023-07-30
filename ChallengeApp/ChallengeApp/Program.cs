@@ -1,84 +1,65 @@
 ﻿using ChallengeApp;
+using System.Diagnostics;
 
-var employee1 = new Employee("Ola", "Kloc");
+Console.WriteLine("Witamy w programie do oceny Pracowników");
+Console.WriteLine("========================================");
+Console.WriteLine();
+Console.WriteLine("Wprowadź oceny z zakresu 0-100" +
+    "\n lub litery które odpowiadają odpowiednio wartościom" +
+    "\n A,a = 100" +
+    "\n B,b = 80" +
+    "\n C,c = 80" +
+    "\n D,d = 80" +
+    "\n E,e = 80");
+Console.WriteLine("========================================");
+Console.WriteLine();
+Console.WriteLine("Podaj pierwszą ocenę pracownika: ");
 
-employee1.AddGrade("25");
-employee1.AddGrade("AA");
-employee1.AddGrade(15);
-employee1.AddGrade(1235.5555m);
+var employee = new Employee();
 
-var statistics1 = employee1.GetStatisticsWithForEach();
-var statistics2 = employee1.GetStatisticsWithFor();
-var statistics3 = employee1.GetStatisticsWithDoWhile();
-var statistics4 = employee1.GetStatisticsWithWhile();
-
-Console.WriteLine("------------------------1-ForEach--------------------");
-Console.WriteLine($"Wartość min : {statistics1.Min}");
-Console.WriteLine($"Wartość max : {statistics1.Max}");
-Console.WriteLine($"Wartość avg : {statistics1.Avg:N2}");
-Console.WriteLine("------------------------2-For------------------------");
-Console.WriteLine($"Wartość min : {statistics2.Min}");
-Console.WriteLine($"Wartość max : {statistics2.Max}");
-Console.WriteLine($"Wartość avg : {statistics2.Avg:N2}");
-Console.WriteLine("------------------------3-DoWhile--------------------");
-Console.WriteLine($"Wartość min : {statistics3.Min}");
-Console.WriteLine($"Wartość max : {statistics3.Max}");
-Console.WriteLine($"Wartość avg : {statistics3.Avg:N2}");
-Console.WriteLine("------------------------4-While----------------------");
-Console.WriteLine($"Wartość min : {statistics4.Min}");
-Console.WriteLine($"Wartość max : {statistics4.Max}");
-Console.WriteLine($"Wartość avg : {statistics4.Avg:N2}");
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*//-------------- 1 --------------------------------------------------------------------------
-//przekazując do metody obiekt Statistics przekazujemy go na zasadzie wartości referencji 
-//i nie jesteśmy w stanie nadpisać oryginalnego obiektu 
-//nawet przypisując do statistics nowy obiekt Statistics
-
-SetSth(statistics)
-
- void SetSth(Statistics statistics)
+/*//================================================================
+//                    try-catch-finally
+try
 {
-    statistics = new Statistics();
+    Employee employee2 = null;
+    var nameEmp2 = employee2.Name;
+}
+catch (Exception err)
+{
+    Console.WriteLine($"Coś poszło nie tak: {err.Message}");
+}
+finally
+{
+    Console.WriteLine("Finally");
+}//==============================================================*/
+
+while (true)
+{
+    var input = Console.ReadLine();
+    if (input == "q") break;
+
+    try
+    {
+        if (input.Length == 1 && Char.IsLetter(input[0]))
+        {
+            char inputToChar = (char)input[0];
+            employee.AddGrade(inputToChar);
+        }
+        else
+        {
+            employee.AddGrade(input);
+        }
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Błąd: {e.Message}");
+    }
+   
+    Console.WriteLine("Podaj kolejną ocenę pracownika lub wprowadź 'q' aby zakończyć wprowadzanie");
 }
 
-
-//-------------- 2 ref ----------------------------------------------------------------------
-//przekazując do metody obiekt Statistics przekazujemy go na zasadzie wartości referencji 
-//i nie jesteśmy w stanie nadpisać oryginalnego obiektu chyba że podamy "ref"
-//przed przekazywanymi parametrami do metodi i przy jej wywołaniu
-
-
-SetSth(ref statistics);
-
-void SetSth(ref Statistics statistics)
-{
-    statistics = new Statistics();
-}
-
-
-//-------------- 3 out ----------------------------------------------------------------------
-//przekazując do metody obiekt Statistics przekazujemy go na zasadzie wartości referencji 
-//i nie jesteśmy w stanie nadpisać oryginalnego obiektu chyba że podamy "out"
-//przed przekazywanymi parametrami do metodi i przy jej wywołaniu
-//różnica między ref i out jest taka że przy ref możemy ale nie musimy nadpisywać obiektu w pamięci programu a przy out koniecznie - inaczej błąd
-//dzieje się tak że przekazany parametr do funkcji nie ma przypisanej wartości a przy ref ma
-
-
-SetSth(out statistics);
-
-void SetSth(out Statistics statistics)
-{
-    statistics = new Statistics();
-}*/
+var stat = employee.GetStatistics();
+Console.WriteLine($"Ocena pracownika : {stat.AvgLetter}");
+Console.WriteLine($"Wartość min : {stat.Min}");
+Console.WriteLine($"Wartość max : {stat.Max}");
+Console.WriteLine($"Wartość avg : {stat.Avg:N2}");
