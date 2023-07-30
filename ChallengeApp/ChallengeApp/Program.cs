@@ -1,5 +1,6 @@
 ﻿using ChallengeApp;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 Console.WriteLine("Witamy w programie do oceny Pracowników");
 Console.WriteLine("========================================");
@@ -40,7 +41,8 @@ while (true)
 
     try
     {
-        if (input.Length == 1 && Char.IsLetter(input[0]))
+        //if (input.Length == 1 && Char.IsLetter(input[0]))
+        if (Regex.IsMatch(input, @"^[a-zA-Z]$"))
         {
             char inputToChar = (char)input[0];
             employee.AddGrade(inputToChar);
