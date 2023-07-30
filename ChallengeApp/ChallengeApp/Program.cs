@@ -18,27 +18,10 @@ Console.WriteLine("Podaj pierwszą ocenę pracownika: ");
 
 var employee = new Employee();
 
-/*//================================================================
-//                    try-catch-finally
-try
-{
-    Employee employee2 = null;
-    var nameEmp2 = employee2.Name;
-}
-catch (Exception err)
-{
-    Console.WriteLine($"Coś poszło nie tak: {err.Message}");
-}
-finally
-{
-    Console.WriteLine("Finally");
-}//==============================================================*/
-
 while (true)
 {
     var input = Console.ReadLine();
     if (input == "q") break;
-
     try
     {
         if (input.Length == 1 && Char.IsLetter(input[0]))
@@ -53,14 +36,21 @@ while (true)
     }
     catch (Exception e)
     {
-        Console.WriteLine($"Błąd: {e.Message}");
+        Console.WriteLine($"Exception: {e.Message}");
     }
-   
     Console.WriteLine("Podaj kolejną ocenę pracownika lub wprowadź 'q' aby zakończyć wprowadzanie");
 }
+try
+{
+    var stat = employee.GetStatistics();
+    Console.WriteLine($"Ocena pracownika : {stat.AvgLetter}");
+    Console.WriteLine($"Wartość min : {stat.Min}");
+    Console.WriteLine($"Wartość max : {stat.Max}");
+    Console.WriteLine($"Wartość avg : {stat.Avg:N2}");
+}
+catch (Exception e)
+{
+    Console.WriteLine($"Exception: {e.Message}");
+}
 
-var stat = employee.GetStatistics();
-Console.WriteLine($"Ocena pracownika : {stat.AvgLetter}");
-Console.WriteLine($"Wartość min : {stat.Min}");
-Console.WriteLine($"Wartość max : {stat.Max}");
-Console.WriteLine($"Wartość avg : {stat.Avg:N2}");
+

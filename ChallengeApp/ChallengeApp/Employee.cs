@@ -5,35 +5,18 @@ namespace ChallengeApp
 {
     public class Employee
     {
-        /*zmienna readonly może byc ustawiona w dwóch miejscach:
-        1) tak jak poniżej, jest to defoult ustawienie
-        2) w konstruktorze może byc tez ustawiona/zmieniona przy tworzeniu obiektu
-
-        1) zmienna readonly*/
-        private readonly char sex = 'M';
-
-        /*zmienna const może byc tylko ustawiona tylko jeden raz ale 
-         można ją ustawiać w dowolnym miejscu np. w metodach*/
-        private const char gender = 'M';
-
         public List<float> grades = new List<float>();
-
         //----------------------------------------------------
         public Employee(string name, string surname)
         {
             this.Name = name;
-            this.SurName = surname;
-
-            //2) zmienna readonly
-            this.sex = 'K';
+            this.SurName = surname;      
     }
         public Employee() { }
-
         //----------------------------------------------------
         public string Name { get; private set; }
         public string SurName { get; private set; }
-
-        //--walidacja danyh przy wprowadzaniu wartości float--
+        //----------------------------------------------------
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -42,10 +25,10 @@ namespace ChallengeApp
             }
             else
             {
-                throw new Exception("Invalid grade - out of range(poza zakresem)");
+                throw new Exception("Invalid grade -> out of range");
             }
         }
-        //--zamiana stringa na float ale bez walidacji-------
+        //----------------------------------------------------
         public void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
@@ -57,22 +40,25 @@ namespace ChallengeApp
                 throw new Exception("String is not a float");
             }
         }
+        //----------------------------------------------------
         public void AddGrade(long grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
+        //----------------------------------------------------
         public void AddGrade(double grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
+        //----------------------------------------------------
         public void AddGrade(decimal grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
-        //switch
+        //----------------------------------------------------
         public void AddGrade(char grade)
         {
             switch (grade)
@@ -101,6 +87,7 @@ namespace ChallengeApp
                     throw new Exception("Wrong letter!");
             }
         }
+        //----------------------------------------------------
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
@@ -132,9 +119,11 @@ namespace ChallengeApp
                     statistics.AvgLetter = 'D';
                     break;
                 default:
-                    Console.WriteLine("Średnia poniżej dolnej granicy: < 20");
-                    statistics.AvgLetter = 'N';
-                    break;
+                    throw new Exception($"Average below the lower limit : < 20" +
+                        $" \nOcena pracownika : 'N'" +
+                        $"\nWartość min : {statistics.Min}" +
+                        $"\nWartość max : {statistics.Max}" +
+                        $"\nWartość avg : {statistics.Avg}");         
             }
             return statistics;
         }
