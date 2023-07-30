@@ -5,6 +5,17 @@ namespace ChallengeApp
 {
     public class Employee
     {
+        /*zmienna readonly może byc ustawiona w dwóch miejscach:
+        1) tak jak poniżej, jest to defoult ustawienie
+        2) w konstruktorze może byc tez ustawiona/zmieniona przy tworzeniu obiektu
+
+        1) zmienna readonly*/
+        private readonly char sex = 'M';
+
+        /*zmienna const może byc tylko ustawiona tylko jeden raz ale 
+         można ją ustawiać w dowolnym miejscu np. w metodach*/
+        private const char gender = 'M';
+
         public List<float> grades = new List<float>();
 
         //----------------------------------------------------
@@ -12,9 +23,12 @@ namespace ChallengeApp
         {
             this.Name = name;
             this.SurName = surname;
-        }
+
+            //2) zmienna readonly
+            this.sex = 'K';
+    }
         public Employee() { }
-        
+
         //----------------------------------------------------
         public string Name { get; private set; }
         public string SurName { get; private set; }
@@ -29,7 +43,6 @@ namespace ChallengeApp
             else
             {
                 throw new Exception("Invalid grade - out of range(poza zakresem)");
-                //Console.WriteLine("Invalid grade - out of range(poza zakresem)");
             }
         }
         //--zamiana stringa na float ale bez walidacji-------
@@ -42,7 +55,6 @@ namespace ChallengeApp
             else
             {
                 throw new Exception("String is not a float");
-                //Console.WriteLine("String is not a float");
             }
         }
         public void AddGrade(long grade)
@@ -87,9 +99,6 @@ namespace ChallengeApp
                     break;
                 default:
                     throw new Exception("Wrong letter!");
-                    //nie potrzeba break bo po throw wyskakuje z metody
-                    //Console.WriteLine("Wrong letter!");
-                    
             }
         }
         public Statistics GetStatistics()
@@ -107,7 +116,7 @@ namespace ChallengeApp
                 statistics.Avg += grade;
             }
             statistics.Avg /= this.grades.Count;
-            
+
             switch (statistics.Avg)
             {
                 case var temp when temp >= 80:

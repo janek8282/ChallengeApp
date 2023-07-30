@@ -41,11 +41,6 @@ while (true)
 
     try
     {
-        //if (input.Length == 1 && Char.IsLetter(input[0])) --> sprawdzamy tylko jeden znak czy jest literą
-        //if (Regex.IsMatch(input, @"^[a-zA-Z]$")) --> sprawdzamy tylko jeden znak czy jest literą
-        //if (!int.TryParse(input, out int result)) --> sprawdzamy ciąg znaków czy nie są liczbą ale nie bardzo pasuje
-        //bo jak dodam aa to wejdzie do 'public void AddGrade(char grade)'(Employee) z jednym 'a',
-        //a powinno wejść do 'else'(Programs)
         if (input.Length == 1 && Char.IsLetter(input[0]))
         {
             char inputToChar = (char)input[0];
