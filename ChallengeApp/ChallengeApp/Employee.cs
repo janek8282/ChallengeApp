@@ -3,20 +3,18 @@ using System.Diagnostics;
 
 namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
         public List<float> grades = new List<float>();
-        //----------------------------------------------------
+
         public Employee(string name, string surname)
         {
             this.Name = name;
-            this.SurName = surname;      
-    }
-        public Employee() { }
-        //----------------------------------------------------
-        public string Name { get; private set; }
+            this.SurName = surname;
+        }
+
         public string SurName { get; private set; }
-        //----------------------------------------------------
+
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -28,7 +26,7 @@ namespace ChallengeApp
                 throw new Exception("Invalid grade -> out of range");
             }
         }
-        //----------------------------------------------------
+
         public void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
@@ -40,25 +38,25 @@ namespace ChallengeApp
                 throw new Exception("String is not a float");
             }
         }
-        //----------------------------------------------------
+
         public void AddGrade(long grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
-        //----------------------------------------------------
+
         public void AddGrade(double grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
-        //----------------------------------------------------
+
         public void AddGrade(decimal grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
-        //----------------------------------------------------
+
         public void AddGrade(char grade)
         {
             switch (grade)
@@ -87,7 +85,7 @@ namespace ChallengeApp
                     throw new Exception("Wrong letter!");
             }
         }
-        //----------------------------------------------------
+
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
@@ -123,7 +121,7 @@ namespace ChallengeApp
                         $" \nOcena pracownika : 'N'" +
                         $"\nWartość min : {statistics.Min}" +
                         $"\nWartość max : {statistics.Max}" +
-                        $"\nWartość avg : {statistics.Avg}");         
+                        $"\nWartość avg : {statistics.Avg}");
             }
             return statistics;
         }
