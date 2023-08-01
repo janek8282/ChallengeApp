@@ -6,10 +6,6 @@
         {
             this.Name = name;
         }
-        public Person()
-        {
-            this.Name = "no name";
-        }
-        public string Name { get; set; }
+        public string Name { get; private set; }//ustawienie name jest możliwe tylko w klasie Person
     }
 }

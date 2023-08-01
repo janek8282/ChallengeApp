@@ -8,8 +8,10 @@ namespace ChallengeApp
         public List<float> grades = new List<float>();
 
         public Employee(string name, string surname)
+            :base(name)//przekazuje name do klasy Person i teraz mogę ustawić name jako private,
+                       //aby nie można z zewnątrz nadpisać(tak jak jest to dla surname)
         {
-            this.Name = name;
+            //this.Name = name; teraz można usunąć name z konstruktora Employee
             this.SurName = surname;
         }
 
