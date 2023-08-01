@@ -6,12 +6,11 @@ namespace ChallengeApp
     public class Employee : Person
     {
         public List<float> grades = new List<float>();
-
         public Employee(string name, string surname)
-            :base(name)//przekazuje name do klasy Person i teraz mogę ustawić name jako private,
-                       //aby nie można z zewnątrz nadpisać(tak jak jest to dla surname)
+            : base(name)
         {
-            //this.Name = name; teraz można usunąć name z konstruktora Employee
+            var licznik = this.counter;//taz mienna pochodzi z klasy Person
+                                       //(jest do niej dostęp ponieważ ma typ protected a nie private)
             this.SurName = surname;
         }
 
