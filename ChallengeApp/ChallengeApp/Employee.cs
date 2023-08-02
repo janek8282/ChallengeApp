@@ -1,29 +1,17 @@
 ﻿using ChallengeApp;
-using System.Diagnostics;
 
 namespace ChallengeApp
 {
     public class Employee : Person
     {
         public List<float> grades = new List<float>();
-
-        public Employee()//bez parametru
-           : this("no name")//przekazuje do konstruktora z jednym parametrem
-        {
-            this.SurName = surname;// nie ma sensu 
-        }
-        public Employee(string name)
-           : this(name, "no surname")//przekazuje do konstruktora z dwoama parametrami
-        {
-            this.SurName = surname;// nie ma sensu
-        }
+        public Employee(){ }
         public Employee(string name, string surname)
-            : base(name)//przekazuje do klasy Person
-        {
-            this.SurName = surname;
-        }
-
-        public string SurName { get; private set; }
+            : base(name, surname) { }
+        public Employee(string name, string surname, int age)
+            : base(name, surname, age) { }
+        public Employee(string name, string surname, int age, char sex)
+            : base(name, surname, age, sex) { }
 
         public void AddGrade(float grade)
         {
