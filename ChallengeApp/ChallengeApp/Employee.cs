@@ -2,7 +2,7 @@
 
 namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee//klasa używa interface IEmployee i definiuje JAK implementować interface
     {
         public List<float> grades = new List<float>();
         public Employee(){ }
