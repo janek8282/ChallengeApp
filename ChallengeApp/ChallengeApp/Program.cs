@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 Console.WriteLine("Witamy w programie do oceny Pracowników");
-Console.WriteLine("========================================");
+ Console.WriteLine("========================================");
 Console.WriteLine();
 Console.WriteLine("Wprowadź oceny z zakresu 0-100" +
     "\n lub litery które odpowiadają odpowiednio wartościom" +
@@ -16,8 +16,7 @@ Console.WriteLine("========================================");
 Console.WriteLine();
 Console.WriteLine("Podaj pierwszą ocenę pracownika: ");
 
-var employee = new EmployeeInMemory("Ala", "Kloc");
-employee.SayHello();//test wywołania metody wirtualnej
+var employee = new EmployeeInFile("Ala", "Kloc");
 
 while (true)
 {
@@ -53,7 +52,6 @@ catch (Exception e)
 {
     Console.WriteLine($"Exception: {e.Message}");
 }
-
 /*Console.WriteLine("Witamy w programie do oceny Przełożonych");
 Console.WriteLine("========================================");
 Console.WriteLine();

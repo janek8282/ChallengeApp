@@ -6,16 +6,6 @@
         public EmployeeInMemory(string name, string surname) 
             : base(name, surname) { }
 
-
-        //medtoda "virtual" musi byc zaimplementowana w klasie bazowej ale może byc równiez nadpisana w kolejnej klasie (głownej)
-        public override void SayHello()
-        {
-            Console.WriteLine("Hello");
-            base.SayHello();//wywoła sie metoda z klasy EmployeeBase
-        }
-
-
-
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -43,13 +33,11 @@
             float result = (float)grade;
             this.AddGrade(result);
         }
-
         public override void AddGrade(double grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
-
         public override void AddGrade(char grade)
         {
             switch (grade)
@@ -78,7 +66,6 @@
                     throw new Exception("Wrong letter!");
             }
         }
-
         public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
