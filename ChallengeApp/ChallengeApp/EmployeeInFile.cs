@@ -1,13 +1,15 @@
 ﻿using System.IO.Enumeration;
+using System.Runtime.CompilerServices;
 
 namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
-        public List<float> grades = new List<float>();
+        /*//(1)moje - 
+        public List<float> grades = new List<float>();*/
 
         public const string fileName = "grades.txt";
-        
+
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
         { }
@@ -75,6 +77,7 @@ namespace ChallengeApp
                     throw new Exception("Wrong letter!");
             }
         }
+        /*//(1)moje -
         public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
@@ -101,6 +104,76 @@ namespace ChallengeApp
                 statistics.Avg += grade;
             }
             statistics.Avg /= this.grades.Count;
+
+            switch (statistics.Avg)
+            {
+                case var temp when temp >= 80:
+                    statistics.AvgLetter = 'A';
+                    break;
+                case var temp when temp >= 60:
+                    statistics.AvgLetter = 'B';
+                    break;
+                case var temp when temp >= 40:
+                    statistics.AvgLetter = 'C';
+                    break;
+                case var temp when temp >= 20:
+                    statistics.AvgLetter = 'D';
+                    break;
+                default:
+                    throw new Exception($"Average below the lower limit : < 20" +
+                        $" \nOcena pracownika : 'N'" +
+                        $"\nWartość min : {statistics.Min}" +
+                        $"\nWartość max : {statistics.Max}" +
+                        $"\nWartość avg : {statistics.Avg}");
+            }
+            return statistics;
+        }*/
+
+
+        //(2 -Adam)
+        //metoda GetStatistics() została rozbita na dwie metody prywatne:
+        //-ReadGradesFromFile() --> stworzona jako metoda typu lista, odczytuje dane z pliku, zapisuje je w postaci lisy tymczasowej i zwraca listę
+        //-CountStatistics(gradesFromFile) --> stworzona jako metoda typu Satistics, oblicza jak poprzednio statystyki i je zwraca, posiada argument-listę
+
+        public override Statistics GetStatistics()
+        {
+            var gradesFromFile = ReadGradesFromFile();
+            var countStatistics = CountStatistics(gradesFromFile);
+            return countStatistics;
+        }
+        private List<float> ReadGradesFromFile()
+        {
+            var grades = new List<float>();
+            if (File.Exists(fileName))
+            {
+                using (var reader = File.OpenText(fileName))
+                {
+                    var line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        float number = float.Parse(line);
+                        grades.Add(number);
+                        line = reader.ReadLine();
+                    }
+                }
+            }
+            return grades;
+        }
+        private Statistics CountStatistics(List<float> grades)
+        {
+            var statistics = new Statistics();
+
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            statistics.Avg = 0;
+
+            foreach (var grade in grades)
+            {
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Avg += grade;
+            }
+            statistics.Avg /= grades.Count;
 
             switch (statistics.Avg)
             {

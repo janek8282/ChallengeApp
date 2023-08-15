@@ -9,9 +9,9 @@ Console.WriteLine("Wprowadź oceny z zakresu 0-100" +
     "\n lub litery które odpowiadają odpowiednio wartościom" +
     "\n A,a = 100" +
     "\n B,b = 80" +
-    "\n C,c = 80" +
-    "\n D,d = 80" +
-    "\n E,e = 80");
+    "\n C,c = 60" +
+    "\n D,d = 40" +
+    "\n E,e = 20");
 Console.WriteLine("========================================");
 Console.WriteLine();
 Console.WriteLine("Podaj pierwszą ocenę pracownika: ");
