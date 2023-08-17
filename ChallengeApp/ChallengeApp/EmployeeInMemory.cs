@@ -2,8 +2,8 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
-        //przygotowanie delegata
-        public delegate string WriteMessage(string message);
+        //przygotowanie delegata który nic nie zwraca --> void
+        public delegate void WriteMessage(string message);
 
         public List<float> grades = new List<float>();
         public EmployeeInMemory(string name, string surname)
@@ -11,15 +11,15 @@
         {
             //stworzenie, wywołanie delegata i przypianie mu metody
             WriteMessage del;
-            del = ReturnMessage;
+            del = WriteMessageInConsole;
             //oba wywołania działają tak samo
             del("del");
-            ReturnMessage("metoda");
+            WriteMessageInConsole("metoda");
         }
         //na potrzeby delegata tworzymy metodę
-        private string ReturnMessage(string message)
+        private void WriteMessageInConsole(string message)
         {
-            return message;
+            Console.WriteLine(message);
         }
 
         public override void AddGrade(float grade)
