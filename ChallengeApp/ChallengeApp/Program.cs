@@ -16,7 +16,7 @@ Console.WriteLine("========================================");
 Console.WriteLine();
 Console.WriteLine("Podaj pierwszą ocenę pracownika: ");
 
-var employee = new EmployeeInFile("Ala", "Kloc");
+var employee = new EmployeeInMemory("Ala", "Kloc");
 
 while (true)
 {

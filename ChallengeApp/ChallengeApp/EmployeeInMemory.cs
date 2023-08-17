@@ -2,9 +2,25 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        //przygotowanie delegata
+        public delegate string WriteMessage(string message);
+
         public List<float> grades = new List<float>();
-        public EmployeeInMemory(string name, string surname) 
-            : base(name, surname) { }
+        public EmployeeInMemory(string name, string surname)
+            : base(name, surname)
+        {
+            //stworzenie, wywołanie delegata i przypianie mu metody
+            WriteMessage del;
+            del = ReturnMessage;
+            //oba wywołania działają tak samo
+            del("del");
+            ReturnMessage("metoda");
+        }
+        //na potrzeby delegata tworzymy metodę
+        private string ReturnMessage(string message)
+        {
+            return message;
+        }
 
         public override void AddGrade(float grade)
         {
