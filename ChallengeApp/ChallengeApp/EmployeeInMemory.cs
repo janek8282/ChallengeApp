@@ -9,17 +9,21 @@
         public EmployeeInMemory(string name, string surname)
             : base(name, surname)
         {
-            //stworzenie, wywołanie delegata i przypianie mu metody
+            //stworzenie, wywołanie delegata i przypianie mu dwóch metod i wyołujemy tylko raz
             WriteMessage del;
             del = WriteMessageInConsole;
-            //oba wywołania działają tak samo
-            del("del");
-            WriteMessageInConsole("metoda");
+            del += WriteMessageInConsole2;
+            del("siemka to metoda oparta na delagacie");
+            
         }
         //na potrzeby delegata tworzymy metodę
         private void WriteMessageInConsole(string message)
         {
             Console.WriteLine(message);
+        }
+        private void WriteMessageInConsole2(string message)
+        {
+            Console.WriteLine(message.ToUpper());
         }
 
         public override void AddGrade(float grade)
