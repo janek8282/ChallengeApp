@@ -14,7 +14,9 @@
             del = WriteMessageInConsole;
             del += WriteMessageInConsole2;
             del("siemka to metoda oparta na delagacie");
-            
+            //odpinam od delegata pierwszą metodę
+            del -= WriteMessageInConsole;
+            del("odpinam od dlegata pierwszą metodę");
         }
         //na potrzeby delegata tworzymy metodę
         private void WriteMessageInConsole(string message)
